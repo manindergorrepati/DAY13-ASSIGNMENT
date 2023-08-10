@@ -1,0 +1,19 @@
+1. Write CL program to find whether the person is eligible to vote or not.
+
+
+ FMT **  ...+... 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7  
+        *************** Beginning of data ************************************* 
+0001.00   PGM                                                                   
+0002.00              DCLF       FILE(*CURLIB/VOTERD)                            
+0002.01              DOWHILE COND(&IN03 = '0')                                  
+0002.02              SNDRCVF    RCDFMT(ENTSCR)                                  
+0002.03              IF         COND(&IN03 = '1') THEN(LEAVE)                   
+0003.00              IF         COND(&NA = 'INDIAN' *AND &AG > 17) +            
+0003.01                           THEN(CHGVAR VAR(&MSG) VALUE('ELIGIBLE'))      
+0003.02                                                                         
+0005.03              IF         COND(&NA *NE 'INDIAN' *OR &AG < 17) +           
+0005.04                           THEN(CHGVAR VAR(&MSG) VALUE('NOT ELIGIBLE'))  
+0005.05                                                                         
+0005.06              ENDDO                                                      
+0006.00   ENDPGM                                                                
+        ****************** End of data **************************************** 
